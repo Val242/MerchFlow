@@ -1,0 +1,16 @@
+spring:
+  config:
+    import: optional:file:./application-local.yaml
+  application:
+    name: merchFlow
+  datasource:
+    url: jdbc:postgresql://localhost:5432/merchflowdb
+    username: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:update}
+    open-in-view: false
+
+server:
+  port: ${PORT:8080}
