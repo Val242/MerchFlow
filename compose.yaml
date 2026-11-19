@@ -1,0 +1,30 @@
+services:
+  merchflowdb:
+    build:
+      context: .
+      dockerfile: Docker-files/db/Dockerfile
+    image: valy05/merchflowdb
+    container_name: merchflowdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - merchflowdbdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: merchflowdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  merchflowapp:
+    build:
+      context: .
+      dockerfile: Docker-files/app/Dockerfile
+    image: valy05/merchflowapp
+    container_name: merchflowapp
+    ports:
+      - "8080:8080"
+    volumes:
+      - merchflowappdata:/usr/local/tomcat/webapps
+
+volumes:
+  merchflowdbdata:
+  merchflowappdata:
