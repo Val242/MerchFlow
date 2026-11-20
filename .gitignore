@@ -50,3 +50,7 @@ crash.*.log
 
 # Terraform plan files
 *.tfplan
+
+# MerchFlow SSH keys
+/Infra/merchflow-key
+/Infra/merchflow-key.pub
