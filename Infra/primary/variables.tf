@@ -8,8 +8,13 @@ variable "region" {
   type        = string
 }
 
-variable "ami_id" {
-  description = "AMI ID used by the server modules."
+variable "ubuntu_ami_id" {
+  description = "Ubuntu AMI ID used by the Jenkins and SonarQube servers."
+  type        = string
+}
+
+variable "amazon_linux_ami_id" {
+  description = "Amazon Linux AMI ID used by the Nexus server."
   type        = string
 }
 
