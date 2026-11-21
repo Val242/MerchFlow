@@ -51,6 +51,15 @@ crash.*.log
 # Terraform plan files
 *.tfplan
 
+# Private and public key files
+*.pem
+*.key
+*.pub
+*.ppk
+*.p12
+*.pfx
+id_*
+
 # MerchFlow SSH keys
 /Infra/merchflow-key
 /Infra/merchflow-key.pub
