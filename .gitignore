@@ -61,5 +61,5 @@ crash.*.log
 id_*
 
 # MerchFlow SSH keys
-/Infra/merchflow-key
+/Infra/primary/merchflow-key
 /Infra/merchflow-key.pub
