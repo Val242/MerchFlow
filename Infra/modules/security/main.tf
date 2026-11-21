@@ -81,6 +81,16 @@ resource "aws_security_group_rule" "jenkins_http_from_my_ip" {
   cidr_blocks       = [var.my_ip_cidr]
 }
 
+resource "aws_security_group_rule" "jenkins_8080_from_my_ip" {
+  type              = "ingress"
+  security_group_id = aws_security_group.jenkins_server.id
+  description       = "Jenkins access on port 8080 from the administrator IP."
+  from_port         = 8080
+  to_port           = 8080
+  protocol          = "tcp"
+  cidr_blocks       = [var.my_ip_cidr]
+}
+
 resource "aws_security_group_rule" "jenkins_8080_from_nexus" {
   type                     = "ingress"
   security_group_id        = aws_security_group.jenkins_server.id
