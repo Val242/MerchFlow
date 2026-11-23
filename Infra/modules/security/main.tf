@@ -71,6 +71,66 @@ resource "aws_security_group_rule" "sonar_ssh_from_my_ip" {
   cidr_blocks       = [var.my_ip_cidr]
 }
 
+resource "aws_security_group_rule" "jenkins_ssh_from_nexus" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.jenkins_server.id
+  description              = "SSH access to Jenkins from the Nexus server."
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.nexus_server.id
+}
+
+resource "aws_security_group_rule" "jenkins_ssh_from_sonar" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.jenkins_server.id
+  description              = "SSH access to Jenkins from the SonarQube server."
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.sonar_server.id
+}
+
+resource "aws_security_group_rule" "nexus_ssh_from_jenkins" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.nexus_server.id
+  description              = "SSH access to Nexus from the Jenkins server."
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.jenkins_server.id
+}
+
+resource "aws_security_group_rule" "nexus_ssh_from_sonar" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.nexus_server.id
+  description              = "SSH access to Nexus from the SonarQube server."
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.sonar_server.id
+}
+
+resource "aws_security_group_rule" "sonar_ssh_from_jenkins" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.sonar_server.id
+  description              = "SSH access to SonarQube from the Jenkins server."
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.jenkins_server.id
+}
+
+resource "aws_security_group_rule" "sonar_ssh_from_nexus" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.sonar_server.id
+  description              = "SSH access to SonarQube from the Nexus server."
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.nexus_server.id
+}
+
 resource "aws_security_group_rule" "jenkins_http_from_my_ip" {
   type              = "ingress"
   security_group_id = aws_security_group.jenkins_server.id
