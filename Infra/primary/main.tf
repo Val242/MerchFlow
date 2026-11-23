@@ -8,6 +8,16 @@ module "iam" {
   iam_policy_name = var.iam_policy_name
 }
 
+module "ecr" {
+  source = "../modules/ecr"
+
+  repository_name = "merchflow-${var.environment}-app-repo"
+  repository_tags = {
+    Environment = var.environment
+    ManagedBy   = "terraform"
+  }
+}
+
 module "security" {
   source = "../modules/security"
 
