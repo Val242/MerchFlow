@@ -1,4 +1,13 @@
 
+module "iam" {
+  source = "../modules/iam"
+
+  iam_user_name   = var.iam_user_name
+  iam_user_path   = var.iam_user_path
+  iam_user_tags   = var.iam_user_tags
+  iam_policy_name = var.iam_policy_name
+}
+
 module "security" {
   source = "../modules/security"
 
